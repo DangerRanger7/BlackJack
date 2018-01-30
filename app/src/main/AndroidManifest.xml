@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".AboutActivity"
             android:label="About the App"/>
+        <activity android:name=".PlayActivity"
+            android:label="BlackJack"/>
     </application>
 
 </manifest>
