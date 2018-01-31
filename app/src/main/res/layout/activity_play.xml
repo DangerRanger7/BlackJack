@@ -24,7 +24,7 @@
         android:layout_toEndOf="@+id/textView3"
         android:text="100"
         android:textColor="@android:color/black"
-        android:textSize="35dp" />
+        android:textSize="35sp" />
 
     <Button
         android:id="@+id/lose_points"
@@ -70,7 +70,7 @@
         android:layout_below="@+id/textView"
         android:layout_marginTop="37dp"
         android:textColor="@android:color/black"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:text="?" />
 
     <TextView
@@ -81,7 +81,7 @@
         android:layout_marginStart="16dp"
         android:layout_toEndOf="@+id/lose_points"
         android:textColor="@android:color/black"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:text="?" />
 
 
@@ -93,7 +93,7 @@
         android:layout_alignStart="@+id/dealer_c1"
         android:layout_centerVertical="true"
         android:textColor="@android:color/black"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:text="?" />
 
     <TextView
@@ -103,7 +103,7 @@
         android:layout_alignStart="@+id/dealer_c2"
         android:layout_alignTop="@+id/player_c1"
         android:textColor="@android:color/black"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:text="?" />
 
     <TextView
