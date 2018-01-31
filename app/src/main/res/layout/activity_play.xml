@@ -30,9 +30,9 @@
         android:id="@+id/lose_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+        android:layout_above="@+id/player_points"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="122dp"
+        android:layout_marginBottom="40dp"
         android:text="Lose Points" />
 
     <Button
@@ -40,8 +40,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/lose_points"
-        android:layout_centerVertical="true"
+        android:layout_alignTop="@+id/player_points"
         android:text="Win Points" />
+
+    <Button
+        android:id="@+id/deal_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dealer_c1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Deal" />
 
     <TextView
         android:id="@+id/textView3"
@@ -52,4 +61,64 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="23dp"
         android:text="Points:" />
+
+    <TextView
+        android:id="@+id/dealer_c1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/player_points"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="37dp"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:text="?" />
+
+    <TextView
+        android:id="@+id/dealer_c2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/dealer_c1"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/lose_points"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:text="?" />
+
+
+
+    <TextView
+        android:id="@+id/player_c1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dealer_c1"
+        android:layout_centerVertical="true"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:text="?" />
+
+    <TextView
+        android:id="@+id/player_c2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dealer_c2"
+        android:layout_alignTop="@+id/player_c1"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:text="?" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/deal_button"
+        android:layout_centerHorizontal="true"
+        android:text="Dealer" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView10"
+        android:layout_centerVertical="true"
+        android:text="Player" />
 </RelativeLayout>
