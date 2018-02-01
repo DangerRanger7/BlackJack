@@ -10,7 +10,7 @@ import android.widget.Toast;
 import java.util.Random;
 
 /**
- * Created by Kierra on 1/30/2018.
+ * Created by Kurt and Kierra on 1/30/2018.
  */
 
 /*
