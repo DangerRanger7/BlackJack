@@ -6,16 +6,6 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="You are in the play activity"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="147dp" />
-
-    <TextView
         android:id="@+id/player_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,15 +33,6 @@
         android:layout_alignTop="@+id/player_points"
         android:text="Win Points" />
 
-    <Button
-        android:id="@+id/deal_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dealer_c1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:text="Deal" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -62,63 +43,126 @@
         android:layout_marginStart="23dp"
         android:text="Points:" />
 
-    <TextView
-        android:id="@+id/dealer_c1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/player_points"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="37dp"
-        android:textColor="@android:color/black"
-        android:textSize="25sp"
-        android:text="?" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/dealer_c2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/dealer_c1"
-        android:layout_marginStart="16dp"
-        android:layout_toEndOf="@+id/lose_points"
-        android:textColor="@android:color/black"
-        android:textSize="25sp"
-        android:text="?" />
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dealer"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:id="@+id/dealer_windo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dealer_c1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="?"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/dealer_c2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="?"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total:"
+                android:textAlignment="textEnd" />
+
+            <TextView
+                android:id="@+id/dealer_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/deal_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Deal" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Player"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:id="@+id/player_windo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/player_c1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="?"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/player_c2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="?"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total:"
+                android:textAlignment="textEnd" />
+
+            <TextView
+                android:id="@+id/player_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 
-
-    <TextView
-        android:id="@+id/player_c1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dealer_c1"
-        android:layout_centerVertical="true"
-        android:textColor="@android:color/black"
-        android:textSize="25sp"
-        android:text="?" />
-
-    <TextView
-        android:id="@+id/player_c2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dealer_c2"
-        android:layout_alignTop="@+id/player_c1"
-        android:textColor="@android:color/black"
-        android:textSize="25sp"
-        android:text="?" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/deal_button"
-        android:layout_centerHorizontal="true"
-        android:text="Dealer" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView10"
-        android:layout_centerVertical="true"
-        android:text="Player" />
 </RelativeLayout>

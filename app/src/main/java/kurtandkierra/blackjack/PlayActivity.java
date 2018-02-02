@@ -56,11 +56,16 @@ public class PlayActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView textView;
+                TextView textView,textView1, textView2;
+                textView1 = findViewById(R.id.dealer_total);
+                textView1.setText("0");
+                textView2 = findViewById(R.id.player_total);
+                textView2.setText("0");
                 for (int i=0; i<4; i++){
                     Random ran = new Random();
                     int card_num = ran.nextInt(13)+1;//13 is max num 1 is min
                     String num;
+
                     if(card_num == 11){
                         num = "J";
                     }else if(card_num == 12){
@@ -72,18 +77,41 @@ public class PlayActivity extends AppCompatActivity {
                     }else {
                         num = card_num + "";
                     }
+                    if(card_num >10){
+                        card_num=10;
+                    }
                     if(i ==0){
                         textView = findViewById(R.id.dealer_c1);
                         textView.setText(num);
+
+                        String d_total = textView1.getText().toString().trim();
+                        int d_total_int = Integer.parseInt(d_total)+card_num;
+                        d_total = ""+d_total_int;
+                        textView1.setText(d_total);
                     }else if(i==1){
                         textView = findViewById(R.id.dealer_c2);
                         textView.setText(num);
+
+                        String d_total = textView1.getText().toString().trim();
+                        int d_total_int = Integer.parseInt(d_total)+card_num;
+                        d_total = ""+d_total_int;
+                        textView1.setText(d_total);
                     }else if(i==2){
                         textView = findViewById(R.id.player_c1);
                         textView.setText(num);
+
+                        String p_total = textView2.getText().toString().trim();
+                        int p_total_int = Integer.parseInt(p_total)+card_num;
+                        p_total = ""+p_total_int;
+                        textView2.setText(p_total);
                     }else if(i==3){
                         textView = findViewById(R.id.player_c2);
                         textView.setText(num);
+
+                        String p_total = textView2.getText().toString().trim();
+                        int p_total_int = Integer.parseInt(p_total)+card_num;
+                        p_total = ""+p_total_int;
+                        textView2.setText(p_total);
                     }else{
                         Toast.makeText(
                                 PlayActivity.this,
