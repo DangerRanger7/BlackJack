@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,9 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+
+        // final int currentAmount = 0;
+        final int STARTING_AMOUNT = 100;
 
 
         Button b = findViewById(R.id.win_points);
@@ -122,5 +126,33 @@ public class PlayActivity extends AppCompatActivity {
                 }// end for
             }// end onClick
         });// end Listener
+
+        //bet button
+        b = findViewById(R.id.bet_button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //check et and get bet amount
+                EditText bet_et = findViewById(R.id.betAmount_editText);
+                String betStr = bet_et.getText().toString();
+                //validate
+                if (betStr.isEmpty()){
+                    bet_et.setText("Need Valid Bet Amount");
+                    return;
+                }
+
+                int bet;
+                int currentAmount;
+
+                bet = Integer.valueOf(betStr);
+
+                currentAmount = STARTING_AMOUNT - bet;
+
+                TextView moneyTV = findViewById(R.id.money_textview);
+                moneyTV.setText(currentAmount);
+
+
+            }
+        });//end of Listener
     }
 }
