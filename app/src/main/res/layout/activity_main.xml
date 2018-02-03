@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kurtandkierra.blackjack.MainActivity">
+    tools:context="kurtandkierra.blackjack.MainActivity"
+    android:background="#006B3C">
 
     <Button
         android:id="@+id/About_button"
