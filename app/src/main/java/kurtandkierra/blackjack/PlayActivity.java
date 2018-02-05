@@ -35,7 +35,7 @@ public class PlayActivity extends AppCompatActivity {
         final int STARTING_AMOUNT = 100;
 
 
-
+        // test data
         Button b = findViewById(R.id.win_points);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +59,9 @@ public class PlayActivity extends AppCompatActivity {
                 points_tv.setText(temp);
             }// end onClick
         });
+        // end test data
 
+        // deal button
         b = findViewById(R.id.deal_button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +130,22 @@ public class PlayActivity extends AppCompatActivity {
                         ).show();
                     }// end if
                 }// end for
+
+
+                // hide deal button
+                Button options = findViewById(R.id.deal_button);
+                options.setClickable(false);
+                options.setVisibility(View.INVISIBLE);
+                // activate skip button
+                options = findViewById(R.id.skip_button);
+                options.setClickable(true);
+                options.setVisibility(View.VISIBLE);
+                // activate draw button
+                options = findViewById(R.id.draw_button);
+                options.setClickable(true);
+                options.setVisibility(View.VISIBLE);
+
+
             }// end onClick
         });// end Listener
 
