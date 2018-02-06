@@ -67,11 +67,18 @@ public class PlayActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView textView, textView1, textView2;
-                textView1 = findViewById(R.id.dealer_total);
-                textView1.setText("0");
-                textView2 = findViewById(R.id.player_total);
-                textView2.setText("0");
+                TextView textView;
+
+                // set unseen cards to 0
+                textView = findViewById(R.id.player_c3);
+                textView.setText("0");
+                textView = findViewById(R.id.dealer_c2);
+                textView.setText("0");
+                // set totals to 0
+                textView = findViewById(R.id.dealer_total);
+                textView.setText("0");
+                textView = findViewById(R.id.player_total);
+                textView.setText("0");
                 for (int i = 0; i < 3; i++) {
                     draw_card(i);
                 }// end for
