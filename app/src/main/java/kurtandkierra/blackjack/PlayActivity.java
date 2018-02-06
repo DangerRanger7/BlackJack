@@ -16,6 +16,7 @@ import java.util.Random;
 
 /*
     1=Ace
+        (need to figure out how to make A=(1 || 11))
     2-10 = 2-10
     11=Jack
     12=Queen
@@ -53,7 +54,8 @@ public class PlayActivity extends AppCompatActivity {
                 textView.setText("0");
                 textView = findViewById(R.id.player_total);
                 textView.setText("0");
-                for (int i = 0; i < 3; i++) {
+
+                for (int i = 0; i < 3; i++) {// get starting hands
                     draw_card(i);
                 }// end for
 
@@ -62,7 +64,7 @@ public class PlayActivity extends AppCompatActivity {
                 options.setClickable(false);
                 options.setVisibility(View.INVISIBLE);
                 // activate skip button
-                options = findViewById(R.id.skip_button);
+                options = findViewById(R.id.hold_button);
                 options.setClickable(true);
                 options.setVisibility(View.VISIBLE);
                 // activate draw button
@@ -103,7 +105,8 @@ public class PlayActivity extends AppCompatActivity {
             }
         });//end of Listener
 
-        b = findViewById(R.id.skip_button);
+        // hold button
+        b = findViewById(R.id.hold_button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,21 +114,22 @@ public class PlayActivity extends AppCompatActivity {
 
                 winner();
 
-                // hide deal button
+                // activate deal button
                 Button options = findViewById(R.id.deal_button);
                 options.setClickable(true);
                 options.setVisibility(View.VISIBLE);
-                // activate skip button
-                options = findViewById(R.id.skip_button);
+                // hide skip button
+                options = findViewById(R.id.hold_button);
                 options.setClickable(false);
                 options.setVisibility(View.INVISIBLE);
-                // activate draw button
+                // hide draw button
                 options = findViewById(R.id.draw_button);
                 options.setClickable(false);
                 options.setVisibility(View.INVISIBLE);
             }// end onClick
         });// end skip Listener
 
+        // draw button
         b=findViewById(R.id.draw_button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,22 +139,22 @@ public class PlayActivity extends AppCompatActivity {
 
                 winner();
 
-                // hide deal button
+                // activate deal button
                 Button options = findViewById(R.id.deal_button);
                 options.setClickable(true);
                 options.setVisibility(View.VISIBLE);
-                // activate skip button
-                options = findViewById(R.id.skip_button);
+                // hide skip button
+                options = findViewById(R.id.hold_button);
                 options.setClickable(false);
                 options.setVisibility(View.INVISIBLE);
-                // activate draw button
+                // hide draw button
                 options = findViewById(R.id.draw_button);
                 options.setClickable(false);
                 options.setVisibility(View.INVISIBLE);
             }// end onClick
         });// end draw Listener
 
-    }// end onCreate
+    }// end main onCreate
 
 // functions --------------------------------------------------------------------------------
 
@@ -158,8 +162,24 @@ public class PlayActivity extends AppCompatActivity {
             TextView textView;
             Random ran = new Random();
             int card_num = ran.nextInt(13) + 1;//13 is max num 1 is min
+            /*
+                1=Ace
+                    (need to figure out how to make A=(1 || 11))
+                2-10 = 2-10
+                11=Jack
+                12=Queen
+                13=King
+            */
+            int card_type = ran.nextInt(4);
+            /*
+                0 = spade
+                1 = club
+                2 = diamond
+                3 = heart
+            */
             String num;
 
+            // set card
             if (card_num == 11) {
                 num = "J";
             } else if (card_num == 12) {
@@ -171,9 +191,13 @@ public class PlayActivity extends AppCompatActivity {
             } else {
                 num = card_num + "";
             }
+
+            // set points
             if (card_num > 10) {
                 card_num = 10;
             }
+
+            // set cards on table
             if (place == 0) { // dealer card 1
                 textView = findViewById(R.id.dealer_c1);
                 textView.setText(num);
