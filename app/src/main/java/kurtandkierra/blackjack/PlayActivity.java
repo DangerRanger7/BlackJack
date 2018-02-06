@@ -147,6 +147,7 @@ public class PlayActivity extends AppCompatActivity {
                 textView = findViewById(R.id.dealer_c1);
                 textView.setText(num);
 
+                // dealer total
                 textView = findViewById(R.id.dealer_total);
                 String d_total = textView.getText().toString().trim();
                 int d_total_int = Integer.parseInt(d_total) + card_num;
@@ -156,6 +157,7 @@ public class PlayActivity extends AppCompatActivity {
                 textView = findViewById(R.id.player_c1);
                 textView.setText(num);
 
+                // player total
                 textView = findViewById(R.id.player_total);
                 String p_total = textView.getText().toString().trim();
                 int p_total_int = Integer.parseInt(p_total) + card_num;
@@ -165,24 +167,27 @@ public class PlayActivity extends AppCompatActivity {
                 textView = findViewById(R.id.player_c2);
                 textView.setText(num);
 
+                // player total
                 textView = findViewById(R.id.player_total);
                 String p_total = textView.getText().toString().trim();
                 int p_total_int = Integer.parseInt(p_total) + card_num;
                 p_total = "" + p_total_int;
                 textView.setText(p_total);
-            }else if (place == 2) { // player optional card 3
-                textView = findViewById(R.id.player_c2);
+            }else if (place == 3) { // player optional card 3
+                textView = findViewById(R.id.player_c3);
                 textView.setText(num);
 
+                // player total
                 textView = findViewById(R.id.player_total);
                 String p_total = textView.getText().toString().trim();
                 int p_total_int = Integer.parseInt(p_total) + card_num;
                 p_total = "" + p_total_int;
                 textView.setText(p_total);
-            }else if (place == 3) { // dealer card 2
+            }else if (place == 4) { // dealer card 2
                 textView = findViewById(R.id.dealer_c2);
                 textView.setText(num);
 
+                // dealer total
                 textView = findViewById(R.id.dealer_total);
                 String d_total = textView.getText().toString().trim();
                 int d_total_int = Integer.parseInt(d_total) + card_num;
