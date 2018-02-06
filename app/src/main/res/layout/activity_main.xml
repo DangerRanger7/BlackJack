@@ -34,7 +34,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/ic_launcher_background" />
-        <!--app:srcCompat="@drawable/bjlogo2" />  Kurt: Do you have this, if so I can't seem to pull it -->
+        app:srcCompat="@drawable/bjlogo2" />  <!--Kurt: I try to add image -->
 
 </RelativeLayout>
