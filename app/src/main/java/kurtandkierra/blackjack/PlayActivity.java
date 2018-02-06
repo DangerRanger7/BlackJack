@@ -36,34 +36,8 @@ public class PlayActivity extends AppCompatActivity {
         final int STARTING_AMOUNT = 100;
 
 
-        // test data
-        Button b = findViewById(R.id.win_points);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView points_tv = findViewById(R.id.player_points);
-                String points_s = points_tv.getText().toString().trim();
-                int points_i = Integer.parseInt(points_s);
-                String temp = "" + (points_i + 1);
-                points_tv.setText(temp);
-            }// end onClick
-        });
-
-        b = findViewById(R.id.lose_points);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView points_tv = findViewById(R.id.player_points);
-                String points_s = points_tv.getText().toString().trim();
-                int points_i = Integer.parseInt(points_s);
-                String temp = "" + (points_i - 1);
-                points_tv.setText(temp);
-            }// end onClick
-        });
-        // end test data
-
         // deal button
-        b = findViewById(R.id.deal_button);
+        Button b = findViewById(R.id.deal_button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
