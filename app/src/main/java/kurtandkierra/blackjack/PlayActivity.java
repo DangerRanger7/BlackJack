@@ -109,6 +109,8 @@ public class PlayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 draw_card(4);// dealer card 2
 
+                winner();
+
                 // hide deal button
                 Button options = findViewById(R.id.deal_button);
                 options.setClickable(true);
@@ -131,6 +133,7 @@ public class PlayActivity extends AppCompatActivity {
                 draw_card(3);// player optional card
                 draw_card(4);// dealer card 2
 
+                winner();
 
                 // hide deal button
                 Button options = findViewById(R.id.deal_button);
@@ -148,6 +151,8 @@ public class PlayActivity extends AppCompatActivity {
         });// end draw Listener
 
     }// end onCreate
+
+// functions --------------------------------------------------------------------------------
 
     public void draw_card(int place){
             TextView textView;
@@ -228,6 +233,62 @@ public class PlayActivity extends AppCompatActivity {
             }// end if
         } // end draw_card
 
+
+    public void winner(){
+        // get dealer total
+        TextView textView = findViewById(R.id.dealer_total);
+        String d_total_s = textView.getText().toString().trim();
+        int d_total_int = Integer.parseInt(d_total_s);
+
+        // get player total
+        textView = findViewById(R.id.player_total);
+        String p_total_s = textView.getText().toString().trim();
+        int p_total_int = Integer.parseInt(p_total_s);
+
+        if(p_total_int == d_total_int){ //tie
+            Toast.makeText(
+                    PlayActivity.this,
+                    "TIE",
+                    Toast.LENGTH_LONG
+            ).show();
+        }else if(p_total_int>21 && d_total_int >21){ //tie 2
+            Toast.makeText(
+                    PlayActivity.this,
+                    "TIE",
+                    Toast.LENGTH_LONG
+            ).show();
+        }else if(p_total_int < d_total_int && d_total_int <= 21){// lose
+            Toast.makeText(
+                    PlayActivity.this,
+                    "You Lose",
+                    Toast.LENGTH_LONG
+            ).show();
+        }else if(p_total_int > 21){// lose 2
+            Toast.makeText(
+                    PlayActivity.this,
+                    "You Lose",
+                    Toast.LENGTH_LONG
+            ).show();
+        }else if(p_total_int > d_total_int && p_total_int <=21){// win
+            Toast.makeText(
+                    PlayActivity.this,
+                    "You Win!",
+                    Toast.LENGTH_LONG
+            ).show();
+        }else if(d_total_int > 21){// win
+            Toast.makeText(
+                    PlayActivity.this,
+                    "You Win!",
+                    Toast.LENGTH_LONG
+            ).show();
+        }else{// ERROR
+            Toast.makeText(
+                    PlayActivity.this,
+                    "Something went wrong",
+                    Toast.LENGTH_LONG
+            ).show();
+        }// end if
+    }// end winner
 
 }
 
