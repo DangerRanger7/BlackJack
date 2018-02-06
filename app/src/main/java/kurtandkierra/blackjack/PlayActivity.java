@@ -72,7 +72,7 @@ public class PlayActivity extends AppCompatActivity {
                 textView1.setText("0");
                 textView2 = findViewById(R.id.player_total);
                 textView2.setText("0");
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 3; i++) {
                     draw_card(i);
                 }// end for
 
@@ -121,6 +121,51 @@ public class PlayActivity extends AppCompatActivity {
                 moneyTV.setText("$" + currentNumber);
             }
         });//end of Listener
+
+        b = findViewById(R.id.skip_button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                draw_card(4);// dealer card 2
+
+                // hide deal button
+                Button options = findViewById(R.id.deal_button);
+                options.setClickable(true);
+                options.setVisibility(View.VISIBLE);
+                // activate skip button
+                options = findViewById(R.id.skip_button);
+                options.setClickable(false);
+                options.setVisibility(View.INVISIBLE);
+                // activate draw button
+                options = findViewById(R.id.draw_button);
+                options.setClickable(false);
+                options.setVisibility(View.INVISIBLE);
+            }// end onClick
+        });// end skip Listener
+
+        b=findViewById(R.id.draw_button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                draw_card(3);// player optional card
+                draw_card(4);// dealer card 2
+
+
+                // hide deal button
+                Button options = findViewById(R.id.deal_button);
+                options.setClickable(true);
+                options.setVisibility(View.VISIBLE);
+                // activate skip button
+                options = findViewById(R.id.skip_button);
+                options.setClickable(false);
+                options.setVisibility(View.INVISIBLE);
+                // activate draw button
+                options = findViewById(R.id.draw_button);
+                options.setClickable(false);
+                options.setVisibility(View.INVISIBLE);
+            }// end onClick
+        });// end draw Listener
+
     }// end onCreate
 
     public void draw_card(int place){
