@@ -286,6 +286,8 @@ public class PlayActivity extends AppCompatActivity {
 
 
     public void winner(){
+        int currentNumber;
+
         // get dealer total
         TextView textView = findViewById(R.id.dealer_total);
         String d_total_s = textView.getText().toString().trim();
@@ -316,13 +318,12 @@ public class PlayActivity extends AppCompatActivity {
             ).show();
             //GAIN MONEY IF WIN/***********************************************************************************************************/
 
-        int currentNumber;
         TextView moneyTV = findViewById(R.id.money_textview);
         String currentNumStr = moneyTV.getText().toString();
         currentNumStr = currentNumStr.replace("$", "");
 
         currentNumber = Integer.valueOf(currentNumStr);
-        currentNumber += 20;
+        currentNumber -= 20;
 
         moneyTV.setText("$" + currentNumber);
 
@@ -341,18 +342,47 @@ public class PlayActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG
             ).show();
 
+            TextView moneyTV = findViewById(R.id.money_textview);
+            String currentNumStr = moneyTV.getText().toString();
+            currentNumStr = currentNumStr.replace("$", "");
+
+            currentNumber = Integer.valueOf(currentNumStr);
+            currentNumber -= 20;
+
+            moneyTV.setText("$" + currentNumber);
+
         }else if(p_total_int > d_total_int && p_total_int <=21){// win
             Toast.makeText(
                     PlayActivity.this,
                     "You Win!",
                     Toast.LENGTH_LONG
             ).show();
+
+            TextView moneyTV = findViewById(R.id.money_textview);
+            String currentNumStr = moneyTV.getText().toString();
+            currentNumStr = currentNumStr.replace("$", "");
+
+            currentNumber = Integer.valueOf(currentNumStr);
+            currentNumber += 20;
+
+            moneyTV.setText("$" + currentNumber);
+
         }else if(d_total_int > 21){// win
             Toast.makeText(
                     PlayActivity.this,
                     "You Win!",
                     Toast.LENGTH_LONG
             ).show();
+
+            TextView moneyTV = findViewById(R.id.money_textview);
+            String currentNumStr = moneyTV.getText().toString();
+            currentNumStr = currentNumStr.replace("$", "");
+
+            currentNumber = Integer.valueOf(currentNumStr);
+            currentNumber += 20;
+
+            moneyTV.setText("$" + currentNumber);
+
         }else{// ERROR
             Toast.makeText(
                     PlayActivity.this,
