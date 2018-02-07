@@ -316,6 +316,18 @@ public class PlayActivity extends AppCompatActivity {
             ).show();
             //GAIN MONEY IF WIN/***********************************************************************************************************/
 
+        int currentNumber;
+        TextView moneyTV = findViewById(R.id.money_textview);
+        String currentNumStr = moneyTV.getText().toString();
+        currentNumStr = currentNumStr.replace("$", "");
+
+        currentNumber = Integer.valueOf(currentNumStr);
+        currentNumber += 20;
+
+        moneyTV.setText("$" + currentNumber);
+
+        //convert to int
+
            /* TextView moneyTV = findViewById(R.id.money_textview);
              String currentNumberStr = moneyTV.getText().toString();
              currentNumberStr.replace("\\ $", "");
