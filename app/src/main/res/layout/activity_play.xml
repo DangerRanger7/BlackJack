@@ -93,7 +93,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Deal" />
+                android:text="Deal"
+                android:textColor="#FFD700"
+                android:textSize="18sp"
+                android:background="@android:color/holo_red_dark"/>
 
             <Button
                 android:id="@+id/draw_button"
@@ -102,7 +105,10 @@
                 android:layout_weight="1"
                 android:clickable="false"
                 android:text="Draw"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:textColor="#FFD700"
+                android:textSize="18sp"
+                android:background="@android:color/holo_red_dark"/>
 
             <Button
                 android:id="@+id/hold_button"
@@ -111,7 +117,10 @@
                 android:layout_weight="1"
                 android:clickable="false"
                 android:text="Hold"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:textColor="#FFD700"
+                android:textSize="18sp"
+                android:background="@android:color/holo_red_dark"/>
         </LinearLayout> <!-- Buttons -->
 
         <TextView
@@ -225,7 +234,10 @@
         android:layout_above="@+id/money_textview"
         android:layout_alignEnd="@+id/money_textview"
         android:layout_marginBottom="46dp"
-        android:text="Bet:" />
+        android:text="Bet:"
+        android:textColor="#FFD700"
+        android:textSize="18sp"
+        android:background="@android:color/holo_red_dark"/>
 
     <EditText
         android:id="@+id/betAmount_editText"
