@@ -323,6 +323,10 @@ public class PlayActivity extends AppCompatActivity {
         currentNumber = Integer.valueOf(currentNumStr);
         currentNumber -= 20;
 
+            if (currentNumber < 0){
+                currentNumber = 0;
+            }
+
         moneyTV.setText("$" + currentNumber);
 
         }else if(p_total_int > 21){// lose 2
@@ -338,6 +342,10 @@ public class PlayActivity extends AppCompatActivity {
 
             currentNumber = Integer.valueOf(currentNumStr);
             currentNumber -= 20;
+
+            if (currentNumber < 0){
+                currentNumber = 0;
+            }
 
             moneyTV.setText("$" + currentNumber);
 
