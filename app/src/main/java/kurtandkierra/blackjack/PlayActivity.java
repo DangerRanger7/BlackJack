@@ -26,8 +26,8 @@ import java.util.Random;
 
 public class PlayActivity extends AppCompatActivity {
 
-    Integer currentNumber;
-
+    //Integer currentNumber;
+    int clicks = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +35,7 @@ public class PlayActivity extends AppCompatActivity {
 
 
         // final int currentAmount = 0;
+
         final int STARTING_AMOUNT = 100;
 
 
@@ -89,11 +90,15 @@ public class PlayActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //count number of clicks
 
+                int currentNumber;
+                TextView moneyTV = findViewById(R.id.money_textview);
                 //check et and get bet amount
                 EditText bet_et = findViewById(R.id.betAmount_editText);
                 String betStr = bet_et.getText().toString();
                 //validate
+
                 if (betStr.isEmpty()) {
                     bet_et.setText("Need Valid Bet Amount");
                     return;
@@ -101,15 +106,37 @@ public class PlayActivity extends AppCompatActivity {
 
                 Integer bet;
                 bet = Integer.valueOf(betStr);
-                if (bet > STARTING_AMOUNT) {
-                    bet_et.setText("Need Valid Bet Amount");
-                    return;
+                if (clicks == 0) {
+                    if (bet > STARTING_AMOUNT) {
+                        bet_et.setText("Need Valid Bet Amount");
+                        return;
+                    }
+                     currentNumber = STARTING_AMOUNT - bet;
+                }else {
+                    String betCheck = betStr;
+                    int bet2 = Integer.valueOf(betCheck);
+
+                    //get current money amount
+                    String money = moneyTV.getText().toString();
+                    money = money.replace("$", "");
+
+                    //convert money amount to int
+                    int moneyAmount = Integer.valueOf(money);
+
+                    if (bet2 > moneyAmount) {
+                        bet_et.setText("Need Valid Bet Amount");
+                        return;
+                    }else{
+                        /*TextView tv = moneyTV;
+                        tv.replace*/
+                        currentNumber = moneyAmount - bet2;
+                    }
+
                 }
+                /*********************************************************************************/
 
-                currentNumber = STARTING_AMOUNT - bet;
-
-                TextView moneyTV = findViewById(R.id.money_textview);
                 moneyTV.setText("$" + currentNumber);
+                clicks++;
             }
         });//end of Listener
 
@@ -145,7 +172,7 @@ public class PlayActivity extends AppCompatActivity {
                 draw_card(3);// player optional card
                 draw_card(4);// dealer card 2
 
-                winner();
+                winner();/*********************************************************************************************************/
 
                 // activate deal button
                 Button options = findViewById(R.id.deal_button);
@@ -257,6 +284,8 @@ public class PlayActivity extends AppCompatActivity {
 
 
     public void winner(){
+        int currentNumber;
+
         // get dealer total
         TextView textView = findViewById(R.id.dealer_total);
         String d_total_s = textView.getText().toString().trim();
@@ -285,24 +314,65 @@ public class PlayActivity extends AppCompatActivity {
                     "You Lose",
                     Toast.LENGTH_LONG
             ).show();
+            //GAIN MONEY IF WIN/***********************************************************************************************************/
+
+        TextView moneyTV = findViewById(R.id.money_textview);
+        String currentNumStr = moneyTV.getText().toString();
+        currentNumStr = currentNumStr.replace("$", "");
+
+        currentNumber = Integer.valueOf(currentNumStr);
+        currentNumber -= 20;
+
+        moneyTV.setText("$" + currentNumber);
+
         }else if(p_total_int > 21){// lose 2
             Toast.makeText(
                     PlayActivity.this,
                     "You Lose",
                     Toast.LENGTH_LONG
             ).show();
+
+            TextView moneyTV = findViewById(R.id.money_textview);
+            String currentNumStr = moneyTV.getText().toString();
+            currentNumStr = currentNumStr.replace("$", "");
+
+            currentNumber = Integer.valueOf(currentNumStr);
+            currentNumber -= 20;
+
+            moneyTV.setText("$" + currentNumber);
+
         }else if(p_total_int > d_total_int && p_total_int <=21){// win
             Toast.makeText(
                     PlayActivity.this,
                     "You Win!",
                     Toast.LENGTH_LONG
             ).show();
+
+            TextView moneyTV = findViewById(R.id.money_textview);
+            String currentNumStr = moneyTV.getText().toString();
+            currentNumStr = currentNumStr.replace("$", "");
+
+            currentNumber = Integer.valueOf(currentNumStr);
+            currentNumber += 20;
+
+            moneyTV.setText("$" + currentNumber);
+
         }else if(d_total_int > 21){// win
             Toast.makeText(
                     PlayActivity.this,
                     "You Win!",
                     Toast.LENGTH_LONG
             ).show();
+
+            TextView moneyTV = findViewById(R.id.money_textview);
+            String currentNumStr = moneyTV.getText().toString();
+            currentNumStr = currentNumStr.replace("$", "");
+
+            currentNumber = Integer.valueOf(currentNumStr);
+            currentNumber += 20;
+
+            moneyTV.setText("$" + currentNumber);
+
         }else{// ERROR
             Toast.makeText(
                     PlayActivity.this,
