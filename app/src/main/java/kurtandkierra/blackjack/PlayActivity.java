@@ -327,14 +327,6 @@ public class PlayActivity extends AppCompatActivity {
 
         moneyTV.setText("$" + currentNumber);
 
-        //convert to int
-
-           /* TextView moneyTV = findViewById(R.id.money_textview);
-             String currentNumberStr = moneyTV.getText().toString();
-             currentNumberStr.replace("\\ $", "");
-            int currentNumber = Integer.valueOf(currentNumberStr);
-            currentNumber += 20;
-            moneyTV.setText("$" + currentNumber);*/
         }else if(p_total_int > 21){// lose 2
             Toast.makeText(
                     PlayActivity.this,
