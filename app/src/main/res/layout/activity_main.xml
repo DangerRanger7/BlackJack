@@ -15,7 +15,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/play_button"
         android:layout_marginBottom="57dp"
+        android:background="@android:color/holo_red_dark"
+        android:fontFamily="serif"
         android:text="@string/about_button"
+        android:textColor="#FFD700"
+        android:textSize="18sp"
         tools:layout_editor_absoluteX="40dp"
         tools:layout_editor_absoluteY="317dp" />
 
@@ -26,7 +30,11 @@
         android:layout_above="@+id/About_button"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="35dp"
-        android:text="@string/play_button" />
+        android:background="@android:color/holo_red_dark"
+        android:fontFamily="serif"
+        android:text="@string/play_button"
+        android:textColor="#FFD700"
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/imageView2"
