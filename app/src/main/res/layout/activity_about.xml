@@ -92,9 +92,8 @@
         android:layout_below="@+id/textView9"
         android:layout_marginEnd="17dp"
         android:fontFamily="sans-serif"
-        android:text="Seeing your 2 cards and only 1 of the dealer's 2 cards you have 2 options avilable. You can choose to get a theird card to increase your total, or keep you hand as is."
-        android:textColor="@android:color/black"
-        android:textSize="14sp" />
+        android:text="Seeing your 2 cards and only 1 of the dealer's 2 cards, you have 2 options avilable. You can choose to get a third card to increase your total, or keep you hand as is."
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/textView13"
