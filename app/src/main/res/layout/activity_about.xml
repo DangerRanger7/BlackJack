@@ -28,6 +28,7 @@
         android:text="The Basics"
         android:textAllCaps="true"
         android:textColor="@android:color/black"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
@@ -36,11 +37,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
+        android:layout_marginEnd="17dp"
         android:layout_marginStart="19dp"
+        android:fontFamily="sans-serif"
         android:text="The basic rules are simple. You as the player just have to have a higher number of points than the dealer, with one caviot, your point total cannot go over 21."
         android:textColor="@android:color/black"
-        android:layout_marginEnd="17dp"
-        android:fontFamily="sans-serif"/>
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textView7"
@@ -53,6 +55,7 @@
         android:text="Points"
         android:textAllCaps="true"
         android:textColor="@android:color/black"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
@@ -61,10 +64,11 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView6"
         android:layout_below="@+id/textView7"
+        android:layout_marginEnd="17dp"
+        android:fontFamily="sans-serif"
         android:text="Cards that have a number on them give points that are equal to the number on the card. For example the 5 of clubs give you 5 points. All Face cards give you 10 points, and final Aces can give you one 1 or 11 points."
         android:textColor="@android:color/black"
-        android:layout_marginEnd="17dp"
-        android:fontFamily="sans-serif"/>
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textView9"
@@ -77,6 +81,7 @@
         android:text="Your Turn"
         android:textAllCaps="true"
         android:textColor="@android:color/black"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
@@ -85,10 +90,11 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView8"
         android:layout_below="@+id/textView9"
+        android:layout_marginEnd="17dp"
+        android:fontFamily="sans-serif"
         android:text="Seeing your 2 cards and only 1 of the dealer's 2 cards you have 2 options avilable. You can choose to get a theird card to increase your total, or keep you hand as is."
         android:textColor="@android:color/black"
-        android:layout_marginEnd="17dp"
-        android:fontFamily="sans-serif"/>
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textView13"
