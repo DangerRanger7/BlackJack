@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.Random;
 
 /**
@@ -27,12 +29,15 @@ import java.util.Random;
 public class PlayActivity extends AppCompatActivity {
 
     //Integer currentNumber;
-    int clicks = 0;
+    int clicks;
+
     int currentNumber;
+    int place;
     int card_num;
     int card_type;
     String betStr;
     String currentNumStr;
+    final int STARTING_AMOUNT = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +47,33 @@ public class PlayActivity extends AppCompatActivity {
         String label;
         String dt_label;
         String pt_label;
-        final int STARTING_AMOUNT = 100;
+        int place_Ro;
+        int card_num_Ro;
+        int card_type_Ro;
+        int clicks_Ro;
 
         if (savedInstanceState == null){//total new start
 
             label = "$" + STARTING_AMOUNT;
             dt_label = "0";
             pt_label = "0";
+            clicks_Ro = 0;
+
+            card_num_Ro = 0;
+            card_type_Ro = 0;
+            place_Ro = 0;
 
         }else{//may have start
             label = (String) savedInstanceState.get("text2");
             dt_label = (String) savedInstanceState.get("dt");
             pt_label= (String) savedInstanceState.get("pt");
+
+            clicks_Ro = (int) savedInstanceState.get("clicks");
+
+            card_num_Ro = (int) savedInstanceState.get("card_num");
+            card_type_Ro = (int) savedInstanceState.get("card_type");
+            place_Ro = (int) savedInstanceState.get("place");
+
         }
 
         final TextView moneyTV = findViewById(R.id.money_textview);
@@ -65,6 +85,11 @@ public class PlayActivity extends AppCompatActivity {
         moneyTV.setText(label);
         dt.setText(dt_label);
         pt.setText(pt_label);
+        card_num = card_num_Ro;
+        card_type = card_type_Ro;
+        place = place_Ro;
+
+        clicks = clicks_Ro;
 
         // final int currentAmount = 0;
 
@@ -559,12 +584,13 @@ public class PlayActivity extends AppCompatActivity {
         //save card num and type when rotated
         outState.putInt("card_num",card_num);
         outState.putInt("card_type", card_type);
+        outState.putInt("place", place);
+        //number of clicks
+        outState.putInt("clicks", clicks);
+
         //save money textview and bet et when rotated
-       /* outState.putString("betStr", betStr);
-        outState.putString("currentNumStr", currentNumStr);
-        outState.putString("currentNumStr", currentNumStr);*/
-       EditText betAmount_editText = findViewById(R.id.betAmount_editText);
-       outState.putString("text1", betAmount_editText.getText().toString());
+       EditText bet_et = findViewById(R.id.betAmount_editText);
+       outState.putString("text1", bet_et.getText().toString());
 
        TextView moneytv = findViewById(R.id.money_textview);
        outState.putString("text2", moneytv.getText().toString());
@@ -576,6 +602,25 @@ public class PlayActivity extends AppCompatActivity {
         outState.putString("pt", pt.getText().toString());
 
     }
+
+    //
+   /* @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+
+        /*final TextView moneyTV = findViewById(R.id.money_textview);
+        final EditText bet_et = findViewById(R.id.betAmount_editText);
+
+        final TextView dt = findViewById(R.id.dealer_total);
+        final TextView pt = findViewById(R.id.player_total);
+
+        TextView moneyTV = (TextView) savedInstanceState.get("text2");
+
+        //restore values
+        moneyTV.setText(savedInstanceState.get("text2"));
+
+        bet_et.setText(savedInstanceState.getString("text1"));
+    }*/
 
 
 }
