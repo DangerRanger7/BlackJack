@@ -40,20 +40,31 @@ public class PlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play);
 
         String label;
+        String dt_label;
+        String pt_label;
         final int STARTING_AMOUNT = 100;
 
         if (savedInstanceState == null){//total new start
 
             label = "$" + STARTING_AMOUNT;
+            dt_label = "0";
+            pt_label = "0";
+
         }else{//may have start
             label = (String) savedInstanceState.get("text2");
+            dt_label = (String) savedInstanceState.get("dt");
+            pt_label= (String) savedInstanceState.get("pt");
         }
 
         final TextView moneyTV = findViewById(R.id.money_textview);
         final EditText bet_et = findViewById(R.id.betAmount_editText);
-        
+
+        final TextView dt = findViewById(R.id.dealer_total);
+        final TextView pt = findViewById(R.id.player_total);
 
         moneyTV.setText(label);
+        dt.setText(dt_label);
+        pt.setText(pt_label);
 
         // final int currentAmount = 0;
 
@@ -552,11 +563,17 @@ public class PlayActivity extends AppCompatActivity {
        /* outState.putString("betStr", betStr);
         outState.putString("currentNumStr", currentNumStr);
         outState.putString("currentNumStr", currentNumStr);*/
-       EditText betAmount_editText = (EditText) findViewById(R.id.betAmount_editText);
+       EditText betAmount_editText = findViewById(R.id.betAmount_editText);
        outState.putString("text1", betAmount_editText.getText().toString());
 
-       TextView moneytv = (TextView) findViewById(R.id.money_textview);
+       TextView moneytv = findViewById(R.id.money_textview);
        outState.putString("text2", moneytv.getText().toString());
+
+      TextView dt = findViewById(R.id.dealer_total);
+      outState.putString("dt", dt.getText().toString());
+
+        TextView pt = findViewById(R.id.player_total);
+        outState.putString("pt", pt.getText().toString());
 
     }
 
