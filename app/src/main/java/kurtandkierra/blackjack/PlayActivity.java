@@ -28,15 +28,34 @@ public class PlayActivity extends AppCompatActivity {
 
     //Integer currentNumber;
     int clicks = 0;
+    int currentNumber;
+    int card_num;
+    int card_type;
+    String betStr;
+    String currentNumStr;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
+        String label;
+        final int STARTING_AMOUNT = 100;
+
+        if (savedInstanceState == null){//total new start
+
+            label = "$" + STARTING_AMOUNT;
+        }else{//may have start
+            label = (String) savedInstanceState.get("text2");
+        }
+
+        final TextView moneyTV = findViewById(R.id.money_textview);
+        final EditText bet_et = findViewById(R.id.betAmount_editText);
+        
+
+        moneyTV.setText(label);
 
         // final int currentAmount = 0;
-
-        final int STARTING_AMOUNT = 100;
 
 
         // deal button
@@ -92,11 +111,11 @@ public class PlayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //count number of clicks
 
-                int currentNumber;
-                TextView moneyTV = findViewById(R.id.money_textview);
+               // int currentNumber;
+               // TextView moneyTV = findViewById(R.id.money_textview);
                 //check et and get bet amount
-                EditText bet_et = findViewById(R.id.betAmount_editText);
-                String betStr = bet_et.getText().toString();
+                //EditText bet_et = findViewById(R.id.betAmount_editText);
+                 betStr = bet_et.getText().toString();
                 //validate
 
                 if (betStr.isEmpty()) {
@@ -197,7 +216,7 @@ public class PlayActivity extends AppCompatActivity {
             TextView textView;
             ImageView imageView;
             Random ran = new Random();
-            int card_num = ran.nextInt(13) + 1;//13 is max num 1 is min
+             card_num = ran.nextInt(13) + 1;//13 is max num 1 is min/*******************************************************/
             /*
                 1=Ace
                     (need to figure out how to make A=(1 || 11))
@@ -206,7 +225,7 @@ public class PlayActivity extends AppCompatActivity {
                 12=Queen
                 13=King
             */
-            int card_type = ran.nextInt(4);
+             card_type = ran.nextInt(4);
             /*
                 0 = spade
                 1 = club
@@ -337,7 +356,7 @@ public class PlayActivity extends AppCompatActivity {
             ).show();
 
             TextView moneyTV = findViewById(R.id.money_textview);
-            String currentNumStr = moneyTV.getText().toString();
+            currentNumStr = moneyTV.getText().toString();
             currentNumStr = currentNumStr.replace("$", "");
 
             currentNumber = Integer.valueOf(currentNumStr);
@@ -520,6 +539,27 @@ public class PlayActivity extends AppCompatActivity {
 
          }
     }// end setCardType
+
+    //Rotation
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+
+        //save card num and type when rotated
+        outState.putInt("card_num",card_num);
+        outState.putInt("card_type", card_type);
+        //save money textview and bet et when rotated
+       /* outState.putString("betStr", betStr);
+        outState.putString("currentNumStr", currentNumStr);
+        outState.putString("currentNumStr", currentNumStr);*/
+       EditText betAmount_editText = (EditText) findViewById(R.id.betAmount_editText);
+       outState.putString("text1", betAmount_editText.getText().toString());
+
+       TextView moneytv = (TextView) findViewById(R.id.money_textview);
+       outState.putString("text2", moneytv.getText().toString());
+
+    }
+
 
 }
 
