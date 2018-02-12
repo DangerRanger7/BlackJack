@@ -32,6 +32,7 @@ public class PlayActivity extends AppCompatActivity {
     int clicks;
 
     int currentNumber;
+
     int place;
     int card_num;
     int card_type;
@@ -39,7 +40,8 @@ public class PlayActivity extends AppCompatActivity {
     String currentNumStr;
     final int STARTING_AMOUNT = 100;
 
-    @Override
+
+   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
@@ -47,6 +49,7 @@ public class PlayActivity extends AppCompatActivity {
         String label;
         String dt_label;
         String pt_label;
+
         int place_Ro;
         int card_num_Ro;
         int card_type_Ro;
@@ -62,6 +65,7 @@ public class PlayActivity extends AppCompatActivity {
             card_num_Ro = 0;
             card_type_Ro = 0;
             place_Ro = 0;
+
 
         }else{//may have start
             label = (String) savedInstanceState.get("text2");
@@ -88,9 +92,9 @@ public class PlayActivity extends AppCompatActivity {
         card_num = card_num_Ro;
         card_type = card_type_Ro;
         place = place_Ro;
-
         clicks = clicks_Ro;
 
+       // imageView.setImageDrawable(imageview);
         // final int currentAmount = 0;
 
 
@@ -581,11 +585,20 @@ public class PlayActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
 
+       /* ImageView player_img1 = findViewById(R.id.player_ci1);
+        //outState.putParcelable("player_ci1", player_img1);
+        ImageView player_img2 = findViewById(R.id.player_ci2);
+        ImageView player_img3 = findViewById(R.id.player_ci3);*/
+
+       /* ImageView dealer1_img = findViewById(R.id.dealer_ci1);
+        ImageView dealer2_img = findViewById(R.id.dealer_ci2);*/
+        
         //save card num and type when rotated
         outState.putInt("card_num",card_num);
         outState.putInt("card_type", card_type);
         outState.putInt("place", place);
-        //number of clicks
+
+       //number of clicks
         outState.putInt("clicks", clicks);
 
         //save money textview and bet et when rotated
