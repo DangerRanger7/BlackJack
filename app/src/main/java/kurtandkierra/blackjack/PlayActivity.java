@@ -1,5 +1,8 @@
 package kurtandkierra.blackjack;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -273,6 +276,8 @@ public class PlayActivity extends AppCompatActivity {
             // set card
             if(card_num > 10) {
                 points = 10;
+            }else if(card_num == 1){
+                points = 11;
             }else{
                 points = card_num;
             }
@@ -284,50 +289,36 @@ public class PlayActivity extends AppCompatActivity {
 
                 // dealer total
                 textView = findViewById(R.id.dealer_total);
-                String d_total = textView.getText().toString().trim();
-                int d_total_int = Integer.parseInt(d_total) + points;
-                d_total = "" + d_total_int;
-                textView.setText(d_total);
+                calc_total(textView,points);
+
             }  else if (place == 1) { // player card 1
                 imageView = findViewById(R.id.player_ci1);
                 set_card_type(imageView,card_type,card_num);
 
                 // player total
                 textView = findViewById(R.id.player_total);
-                String p_total = textView.getText().toString().trim();
-                int p_total_int = Integer.parseInt(p_total) + points;
-                p_total = "" + p_total_int;
-                textView.setText(p_total);
+                calc_total(textView,points);
             } else if (place == 2) { // player card 2
                 imageView = findViewById(R.id.player_ci2);
                 set_card_type(imageView,card_type,card_num);
 
                 // player total
                 textView = findViewById(R.id.player_total);
-                String p_total = textView.getText().toString().trim();
-                int p_total_int = Integer.parseInt(p_total) + points;
-                p_total = "" + p_total_int;
-                textView.setText(p_total);
+                calc_total(textView,points);
             }else if (place == 3) { // player optional card 3
                 imageView = findViewById(R.id.player_ci3);
                 set_card_type(imageView,card_type,card_num);
 
                 // player total
                 textView = findViewById(R.id.player_total);
-                String p_total = textView.getText().toString().trim();
-                int p_total_int = Integer.parseInt(p_total) + points;
-                p_total = "" + p_total_int;
-                textView.setText(p_total);
+                calc_total(textView,points);
             }else if (place == 4) { // dealer card 2
                 imageView = findViewById(R.id.dealer_ci2);
                 set_card_type(imageView,card_type,card_num);
 
                 // dealer total
                 textView = findViewById(R.id.dealer_total);
-                String d_total = textView.getText().toString().trim();
-                int d_total_int = Integer.parseInt(d_total) + points;
-                d_total = "" + d_total_int;
-                textView.setText(d_total);
+                calc_total(textView,points);
             } else { // if ERROR
                 Toast.makeText(
                         PlayActivity.this,
@@ -346,10 +337,30 @@ public class PlayActivity extends AppCompatActivity {
         String d_total_s = textView.getText().toString().trim();
         int d_total_int = Integer.parseInt(d_total_s);
 
+        // check dealer aces
+        if(d_total_int > 21){
+            d_total_int = d_total_int -10;
+        }
+
         // get player total
         textView = findViewById(R.id.player_total);
         String p_total_s = textView.getText().toString().trim();
         int p_total_int = Integer.parseInt(p_total_s);
+
+        // check player aces
+        if(p_total_int > 21){
+            ImageView seen_iv = findViewById(R.id.player_ci1);
+            p_total_int = check_player_ace(seen_iv,p_total_int);
+            if(p_total_int > 21){
+                seen_iv = findViewById(R.id.player_ci3);
+                p_total_int = check_player_ace(seen_iv,p_total_int);
+                if(p_total_int > 21){
+                    seen_iv = findViewById(R.id.player_ci3);
+                    p_total_int = check_player_ace(seen_iv,p_total_int);
+                }
+            }
+        }// end if
+
 
         if(p_total_int == d_total_int){ //tie
             Toast.makeText(
@@ -621,6 +632,23 @@ public class PlayActivity extends AppCompatActivity {
 
         bet_et.setText(savedInstanceState.getString("text1"));
     }*/
+
+    public void calc_total(TextView location,int points){
+        String total = location.getText().toString().trim();
+        int total_int = Integer.parseInt(total) + points;
+        total = "" + total_int;
+        location.setText(total);
+    }
+
+    public int check_player_ace(ImageView seen_iv, int p_total_int){
+        Bitmap seen_bm = seen_iv.getDrawingCache();
+        Drawable seen_dra = new BitmapDrawable(getResources(),seen_bm);
+        Drawable card_ca = getResources().getDrawable(R.drawable.card_ca), card_ha = getResources().getDrawable(R.drawable.card_ha), card_da = getResources().getDrawable(R.drawable.card_da), card_sa = getResources().getDrawable(R.drawable.card_sa);
+        if(seen_dra.equals(card_ca) || seen_dra.equals(card_ha) || seen_dra.equals(card_da) || seen_dra.equals(card_sa)){
+            return p_total_int -10;
+        }
+        return p_total_int;
+    }
 
 
 }
