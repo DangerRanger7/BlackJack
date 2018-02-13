@@ -1,6 +1,7 @@
 package kurtandkierra.blackjack;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -42,7 +43,7 @@ public class PlayActivity extends AppCompatActivity {
     String betStr;
     String currentNumStr;
     final int STARTING_AMOUNT = 100;
-
+    int lable_p1=0,lable_p2=0,lable_p3=0,lable_d1=0,lable_d2=0;
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +115,13 @@ public class PlayActivity extends AppCompatActivity {
                 textView.setText("0");
                 textView = findViewById(R.id.dealer_c2);
                 textView.setText("0");//*/
+
+                // set lables
+                lable_p1=0;
+                lable_p2=0;
+                lable_p3=0;
+                lable_d1=0;
+                lable_d2=0;
 
                 // set unseen cards to back
                 imageView = findViewById(R.id.player_ci3);
@@ -290,6 +298,7 @@ public class PlayActivity extends AppCompatActivity {
             if (place == 0) { // dealer card 1
                 imageView = findViewById(R.id.dealer_ci1);
                 set_card_type(imageView,card_type,card_num);
+                lable_d1=card_num;
 
                 // dealer total
                 textView = findViewById(R.id.dealer_total);
@@ -298,6 +307,7 @@ public class PlayActivity extends AppCompatActivity {
             }  else if (place == 1) { // player card 1
                 imageView = findViewById(R.id.player_ci1);
                 set_card_type(imageView,card_type,card_num);
+                lable_p1=card_num;
 
                 // player total
                 textView = findViewById(R.id.player_total);
@@ -305,6 +315,7 @@ public class PlayActivity extends AppCompatActivity {
             } else if (place == 2) { // player card 2
                 imageView = findViewById(R.id.player_ci2);
                 set_card_type(imageView,card_type,card_num);
+                lable_p2 = card_num;
 
                 // player total
                 textView = findViewById(R.id.player_total);
@@ -312,6 +323,7 @@ public class PlayActivity extends AppCompatActivity {
             }else if (place == 3) { // player optional card 3
                 imageView = findViewById(R.id.player_ci3);
                 set_card_type(imageView,card_type,card_num);
+                lable_p3 = card_num;
 
                 // player total
                 textView = findViewById(R.id.player_total);
@@ -319,6 +331,7 @@ public class PlayActivity extends AppCompatActivity {
             }else if (place == 4) { // dealer card 2
                 imageView = findViewById(R.id.dealer_ci2);
                 set_card_type(imageView,card_type,card_num);
+                lable_d2=card_num;
 
                 // dealer total
                 textView = findViewById(R.id.dealer_total);
@@ -344,6 +357,7 @@ public class PlayActivity extends AppCompatActivity {
         // check dealer aces
         if(d_total_int > 21){
             d_total_int = d_total_int -10;
+            textView.setText(""+d_total_int);
         }
 
         // get player total
@@ -353,16 +367,14 @@ public class PlayActivity extends AppCompatActivity {
 
         // check player aces
         if(p_total_int > 21){
-            ImageView seen_iv = findViewById(R.id.player_ci1);
-            p_total_int = check_player_ace(seen_iv,p_total_int);
+            p_total_int = check_player_ace(p_total_int, lable_p1);
             if(p_total_int > 21){
-                seen_iv = findViewById(R.id.player_ci3);
-                p_total_int = check_player_ace(seen_iv,p_total_int);
+                p_total_int = check_player_ace(p_total_int, lable_p2);
                 if(p_total_int > 21){
-                    seen_iv = findViewById(R.id.player_ci3);
-                    p_total_int = check_player_ace(seen_iv,p_total_int);
+                    p_total_int = check_player_ace(p_total_int, lable_p3);
                 }
             }
+            textView.setText(""+p_total_int);
         }// end if
 
 
@@ -653,15 +665,13 @@ public class PlayActivity extends AppCompatActivity {
         location.setText(total);
     }
 
-    public int check_player_ace(ImageView seen_iv, int p_total_int){
-        Bitmap seen_bm = seen_iv.getDrawingCache();
-        Drawable seen_dra = new BitmapDrawable(getResources(),seen_bm);
-        Drawable card_ca = getResources().getDrawable(R.drawable.card_ca), card_ha = getResources().getDrawable(R.drawable.card_ha), card_da = getResources().getDrawable(R.drawable.card_da), card_sa = getResources().getDrawable(R.drawable.card_sa);
-        if(seen_dra.equals(card_ca) || seen_dra.equals(card_ha) || seen_dra.equals(card_da) || seen_dra.equals(card_sa)){
+    public int check_player_ace(int p_total_int, int lable){
+        if(lable != 1){
+            return p_total_int;
+        }else{
             return p_total_int -10;
         }
-        return p_total_int;
-    }
+    }// end check_player_ace
 
 
 }
