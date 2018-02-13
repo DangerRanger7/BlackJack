@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -44,6 +45,9 @@ public class PlayActivity extends AppCompatActivity {
     String currentNumStr;
     final int STARTING_AMOUNT = 100;
     int lable_p1=0,lable_p2=0,lable_p3=0,lable_d1=0,lable_d2=0;
+    //create arry
+    HashMap<Integer, Integer> cardDrawableIDs = new HashMap<>();
+
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +57,6 @@ public class PlayActivity extends AppCompatActivity {
         String label;
         String dt_label;
         String pt_label;
-
-        int place_Ro;
-        int card_num_Ro;
-        int card_type_Ro;
         int clicks_Ro;
 
         if (savedInstanceState == null){//total new start
@@ -66,10 +66,12 @@ public class PlayActivity extends AppCompatActivity {
             pt_label = "0";
             clicks_Ro = 0;
 
-            card_num_Ro = 0;
-            card_type_Ro = 0;
-            place_Ro = 0;
+            cardDrawableIDs.put(R.id.player_ci1, R.drawable.card_back);/****************************/
+            cardDrawableIDs.put(R.id.player_ci2, R.drawable.card_back);
+            cardDrawableIDs.put(R.id.player_ci3, R.drawable.card_back);
 
+            cardDrawableIDs.put(R.id.dealer_ci1, R.drawable.card_back);
+            cardDrawableIDs.put(R.id.dealer_ci2, R.drawable.card_back);
 
         }else{//may have start
             label = (String) savedInstanceState.get("text2");
@@ -78,11 +80,39 @@ public class PlayActivity extends AppCompatActivity {
 
             clicks_Ro = (int) savedInstanceState.get("clicks");
 
-            card_num_Ro = (int) savedInstanceState.get("card_num");
+          /*  card_num_Ro = (int) savedInstanceState.get("card_num");
             card_type_Ro = (int) savedInstanceState.get("card_type");
-            place_Ro = (int) savedInstanceState.get("place");
+            place_Ro = (int) savedInstanceState.get("place");*/
 
+            int drawableIDs = savedInstanceState.getInt("player_ci1", R.drawable.card_back);
+            cardDrawableIDs.put(R.id.player_ci1, drawableIDs);/********************************************************/
+
+            drawableIDs = savedInstanceState.getInt("player_ci2", R.drawable.card_back);
+            cardDrawableIDs.put(R.id.player_ci2, drawableIDs);
+
+            drawableIDs = savedInstanceState.getInt("player_ci3", R.drawable.card_back);
+            cardDrawableIDs.put(R.id.player_ci3, drawableIDs);
+
+            drawableIDs = savedInstanceState.getInt("dealer_ci1", R.drawable.card_back);
+            cardDrawableIDs.put(R.id.dealer_ci1, drawableIDs);
+
+            drawableIDs = savedInstanceState.getInt("dealer_ci2", R.drawable.card_back);
+            cardDrawableIDs.put(R.id.dealer_ci2, drawableIDs);
         }
+       ImageView imageView = findViewById(R.id.player_ci1);
+       imageView.setImageResource(cardDrawableIDs.get(R.id.player_ci1));//*******************************************/
+
+       imageView = findViewById(R.id.player_ci2);
+       imageView.setImageResource(cardDrawableIDs.get(R.id.player_ci2));
+
+        imageView = findViewById(R.id.player_ci3);
+       imageView.setImageResource(cardDrawableIDs.get(R.id.player_ci3));
+
+        imageView = findViewById(R.id.dealer_ci1);
+       imageView.setImageResource(cardDrawableIDs.get(R.id.dealer_ci1));
+
+        imageView = findViewById(R.id.dealer_ci2);
+       imageView.setImageResource(cardDrawableIDs.get(R.id.dealer_ci2));
 
         final TextView moneyTV = findViewById(R.id.money_textview);
         final EditText bet_et = findViewById(R.id.betAmount_editText);
@@ -93,14 +123,8 @@ public class PlayActivity extends AppCompatActivity {
         moneyTV.setText(label);
         dt.setText(dt_label);
         pt.setText(pt_label);
-        card_num = card_num_Ro;
-        card_type = card_type_Ro;
-        place = place_Ro;
+
         clicks = clicks_Ro;
-
-       // imageView.setImageDrawable(imageview);
-        // final int currentAmount = 0;
-
 
         // deal button
         Button b = findViewById(R.id.deal_button);
@@ -126,6 +150,8 @@ public class PlayActivity extends AppCompatActivity {
                 // set unseen cards to back
                 imageView = findViewById(R.id.player_ci3);
                 imageView.setImageResource(R.drawable.card_back);
+                cardDrawableIDs.put(R.id.player_ci3, R.drawable.card_back);/****************************/
+
                 imageView = findViewById(R.id.dealer_ci2);
                 imageView.setImageResource(R.drawable.card_back);
                 // set totals to 0
@@ -488,128 +514,135 @@ public class PlayActivity extends AppCompatActivity {
          */
          if(type == 0){ // spades
              card_type = type;
-             if(num == 1){
-                 card.setImageResource(R.drawable.card_sa);
-             }else if(num == 2){
-                 card.setImageResource(R.drawable.card_s2);
-             }else if(num == 3){
-                 card.setImageResource(R.drawable.card_s3);
-             }else if(num == 4){
-                 card.setImageResource(R.drawable.card_s4);
-             }else if(num == 5){
-                 card.setImageResource(R.drawable.card_s5);
-             }else if(num == 6){
-                 card.setImageResource(R.drawable.card_s6);
-             }else if(num == 7){
-                 card.setImageResource(R.drawable.card_s7);
-             }else if(num == 8){
-                 card.setImageResource(R.drawable.card_s8);
-             }else if(num == 9){
-                 card.setImageResource(R.drawable.card_s9);
-             }else if(num == 10){
-                 card.setImageResource(R.drawable.card_s10);
-             }else if(num == 11){
-                 card.setImageResource(R.drawable.card_sj);
-             }else if(num == 12){
-                 card.setImageResource(R.drawable.card_sq);
-             }else if(num == 13){
-                 card.setImageResource(R.drawable.card_sk);
-             }
              card_num = num;
+             if(num == 1){
+               cardDrawableIDs.put(card.getId(), R.drawable.card_sa);
+             }else if(num == 2){
+                cardDrawableIDs.put(card.getId(), R.drawable.card_s2);
+             }else if(num == 3){
+               cardDrawableIDs.put(card.getId(), R.drawable.card_s3);
+             }else if(num == 4){
+                cardDrawableIDs.put(card.getId(), R.drawable.card_s4);
+             }else if(num == 5){
+                cardDrawableIDs.put(card.getId(), R.drawable.card_s5);
+             }else if(num == 6){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_s6);
+             }else if(num == 7){
+                cardDrawableIDs.put(card.getId(), R.drawable.card_s7);
+             }else if(num == 8){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_s8);
+             }else if(num == 9){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_s9);
+             }else if(num == 10){
+                cardDrawableIDs.put(card.getId(), R.drawable.card_s10);
+             }else if(num == 11){
+                  cardDrawableIDs.put(card.getId(), R.drawable.card_sj);
+             }else if(num == 12){
+                  cardDrawableIDs.put(card.getId(), R.drawable.card_sq);
+             }else if(num == 13){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_sk);
+             }
+
 
          }else if (type == 1){ // clubs
              card_type = type;
-             if(num == 1){
-                 card.setImageResource(R.drawable.card_ca);
-             }else if(num == 2){
-                 card.setImageResource(R.drawable.card_c2);
-             }else if(num == 3){
-                 card.setImageResource(R.drawable.card_c3);
-             }else if(num == 4){
-                 card.setImageResource(R.drawable.card_c4);
-             }else if(num == 5){
-                 card.setImageResource(R.drawable.card_c5);
-             }else if(num == 6){
-                 card.setImageResource(R.drawable.card_c6);
-             }else if(num == 7){
-                 card.setImageResource(R.drawable.card_c7);
-             }else if(num == 8){
-                 card.setImageResource(R.drawable.card_c8);
-             }else if(num == 9){
-                 card.setImageResource(R.drawable.card_c9);
-             }else if(num == 10){
-                 card.setImageResource(R.drawable.card_c10);
-             }else if(num == 11){
-                 card.setImageResource(R.drawable.card_cj);
-             }else if(num == 12){
-                 card.setImageResource(R.drawable.card_cq);
-             }else if(num == 13){
-                 card.setImageResource(R.drawable.card_ck);
-             }
              card_num = num;
+             if(num == 1){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_ca);
+             }else if(num == 2){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_c2);
+             }else if(num == 3){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_c3);
+             }else if(num == 4){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_c4);
+             }else if(num == 5){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_c5);
+             }else if(num == 6){
+                  cardDrawableIDs.put(card.getId(), R.drawable.card_c6);
+             }else if(num == 7){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_c7);
+             }else if(num == 8){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_c8);
+             }else if(num == 9){
+                 //card.setImageResource(R.drawable.card_c9);
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_c9);
+             }else if(num == 10){
+                // card.setImageResource(R.drawable.card_c10);
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_c10);
+             }else if(num == 11){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_cj);
+             }else if(num == 12){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_cq);
+             }else if(num == 13){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_ck);
+             }
+
          }else if(type == 2){ // diamonds
              card_type = type;
-             if(num == 1){
-                 card.setImageResource(R.drawable.card_da);
-             }else if(num == 2){
-                 card.setImageResource(R.drawable.card_d2);
-             }else if(num == 3){
-                 card.setImageResource(R.drawable.card_d3);
-             }else if(num == 4){
-                 card.setImageResource(R.drawable.card_d4);
-             }else if(num == 5){
-                 card.setImageResource(R.drawable.card_d5);
-             }else if(num == 6){
-                 card.setImageResource(R.drawable.card_d6);
-             }else if(num == 7){
-                 card.setImageResource(R.drawable.card_d7);
-             }else if(num == 8){
-                 card.setImageResource(R.drawable.card_d8);
-             }else if(num == 9){
-                 card.setImageResource(R.drawable.card_d9);
-             }else if(num == 10){
-                 card.setImageResource(R.drawable.card_d10);
-             }else if(num == 11){
-                 card.setImageResource(R.drawable.card_dj);
-             }else if(num == 12){
-                 card.setImageResource(R.drawable.card_dq);
-             }else if(num == 13){
-                 card.setImageResource(R.drawable.card_dk);
-             }
              card_num = num;
+             if(num == 1){
+                cardDrawableIDs.put(card.getId(), R.drawable.card_da);
+             }else if(num == 2){
+                cardDrawableIDs.put(card.getId(), R.drawable.card_d2);
+             }else if(num == 3){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_d3);
+             }else if(num == 4){
+                cardDrawableIDs.put(card.getId(), R.drawable.card_d4);
+             }else if(num == 5){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_d5);
+             }else if(num == 6){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_d6);
+             }else if(num == 7){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_d7);
+             }else if(num == 8){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_d8);
+             }else if(num == 9){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_d9);
+             }else if(num == 10){
+                cardDrawableIDs.put(card.getId(), R.drawable.card_d10);
+             }else if(num == 11){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_dj);
+             }else if(num == 12){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_dq);
+             }else if(num == 13){
+                cardDrawableIDs.put(card.getId(), R.drawable.card_dk);
+             }
+
          }else if(type == 3){ // hearts
              card_type = type;
-             if(num == 1){
-                 card.setImageResource(R.drawable.card_ha);
-             }else if(num == 2){
-                 card.setImageResource(R.drawable.card_h2);
-             }else if(num == 3){
-                 card.setImageResource(R.drawable.card_h3);
-             }else if(num == 4){
-                 card.setImageResource(R.drawable.card_h4);
-             }else if(num == 5){
-                 card.setImageResource(R.drawable.card_h5);
-             }else if(num == 6){
-                 card.setImageResource(R.drawable.card_h6);
-             }else if(num == 7){
-                 card.setImageResource(R.drawable.card_h7);
-             }else if(num == 8){
-                 card.setImageResource(R.drawable.card_h8);
-             }else if(num == 9){
-                 card.setImageResource(R.drawable.card_h9);
-             }else if(num == 10){
-                 card.setImageResource(R.drawable.card_h10);
-             }else if(num == 11){
-                 card.setImageResource(R.drawable.card_hj);
-             }else if(num == 12){
-                 card.setImageResource(R.drawable.card_hq);
-             }else if(num == 13){
-                 card.setImageResource(R.drawable.card_hk);
-             }
              card_num = num;
+             if(num == 1){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_ha);
+             }else if(num == 2){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_h2);
+             }else if(num == 3){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_h3);
+             }else if(num == 4){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_h4);
+             }else if(num == 5){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_h5);
+             }else if(num == 6){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_h6);
+             }else if(num == 7){
+                   cardDrawableIDs.put(card.getId(), R.drawable.card_h7);
+             }else if(num == 8){
+                cardDrawableIDs.put(card.getId(), R.drawable.card_h8);
+             }else if(num == 9){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_h9);
+             }else if(num == 10){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_h10);
+             }else if(num == 11){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_hj);
+             }else if(num == 12){
+                 cardDrawableIDs.put(card.getId(), R.drawable.card_hq);
+             }else if(num == 13){
+                cardDrawableIDs.put(card.getId(), R.drawable.card_hk);
+             }
+
          }else{ // ERROR
 
          }
+         card.setImageResource(cardDrawableIDs.get(card.getId()));
     }// end setCardType
 
     //Rotation
@@ -617,18 +650,12 @@ public class PlayActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
 
-       /* ImageView player_img1 = findViewById(R.id.player_ci1);
-        //outState.putParcelable("player_ci1", player_img1);
-        ImageView player_img2 = findViewById(R.id.player_ci2);
-        ImageView player_img3 = findViewById(R.id.player_ci3);*/
+       outState.putInt("dealer_ci1", cardDrawableIDs.get(R.id.dealer_ci1));/***************************************/
+       outState.putInt("dealer_ci2", cardDrawableIDs.get(R.id.dealer_ci1));
 
-       /* ImageView dealer1_img = findViewById(R.id.dealer_ci1);
-        ImageView dealer2_img = findViewById(R.id.dealer_ci2);*/
-        
-        //save card num and type when rotated
-        outState.putInt("card_num",card_num);
-        outState.putInt("card_type", card_type);
-        outState.putInt("place", place);
+       outState.putInt("player_ci1", cardDrawableIDs.get(R.id.player_ci1));
+       outState.putInt("player_ci2", cardDrawableIDs.get(R.id.player_ci2));
+       outState.putInt("player_ci3", cardDrawableIDs.get(R.id.player_ci3));
 
        //number of clicks
         outState.putInt("clicks", clicks);
