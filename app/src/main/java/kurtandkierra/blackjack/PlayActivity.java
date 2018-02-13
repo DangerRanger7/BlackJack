@@ -487,6 +487,7 @@ public class PlayActivity extends AppCompatActivity {
                 13=King
          */
          if(type == 0){ // spades
+             card_type = type;
              if(num == 1){
                  card.setImageResource(R.drawable.card_sa);
              }else if(num == 2){
@@ -514,7 +515,10 @@ public class PlayActivity extends AppCompatActivity {
              }else if(num == 13){
                  card.setImageResource(R.drawable.card_sk);
              }
+             card_num = num;
+
          }else if (type == 1){ // clubs
+             card_type = type;
              if(num == 1){
                  card.setImageResource(R.drawable.card_ca);
              }else if(num == 2){
@@ -542,7 +546,9 @@ public class PlayActivity extends AppCompatActivity {
              }else if(num == 13){
                  card.setImageResource(R.drawable.card_ck);
              }
+             card_num = num;
          }else if(type == 2){ // diamonds
+             card_type = type;
              if(num == 1){
                  card.setImageResource(R.drawable.card_da);
              }else if(num == 2){
@@ -570,7 +576,9 @@ public class PlayActivity extends AppCompatActivity {
              }else if(num == 13){
                  card.setImageResource(R.drawable.card_dk);
              }
+             card_num = num;
          }else if(type == 3){ // hearts
+             card_type = type;
              if(num == 1){
                  card.setImageResource(R.drawable.card_ha);
              }else if(num == 2){
@@ -598,6 +606,7 @@ public class PlayActivity extends AppCompatActivity {
              }else if(num == 13){
                  card.setImageResource(R.drawable.card_hk);
              }
+             card_num = num;
          }else{ // ERROR
 
          }
