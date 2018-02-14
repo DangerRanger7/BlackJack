@@ -1,5 +1,7 @@
 package kurtandkierra.blackjack;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -79,10 +81,6 @@ public class PlayActivity extends AppCompatActivity {
             pt_label= (String) savedInstanceState.get("pt");
 
             clicks_Ro = (int) savedInstanceState.get("clicks");
-
-          /*  card_num_Ro = (int) savedInstanceState.get("card_num");
-            card_type_Ro = (int) savedInstanceState.get("card_type");
-            place_Ro = (int) savedInstanceState.get("place");*/
 
             int drawableIDs = savedInstanceState.getInt("player_ci1", R.drawable.card_back);
             cardDrawableIDs.put(R.id.player_ci1, drawableIDs);/********************************************************/
@@ -675,24 +673,12 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
-    //
-   /* @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState){
-        super.onRestoreInstanceState(savedInstanceState);
+@Override
+    protected void onPause() {
+        super.onPause();
 
-        /*final TextView moneyTV = findViewById(R.id.money_textview);
-        final EditText bet_et = findViewById(R.id.betAmount_editText);
+    }
 
-        final TextView dt = findViewById(R.id.dealer_total);
-        final TextView pt = findViewById(R.id.player_total);
-
-        TextView moneyTV = (TextView) savedInstanceState.get("text2");
-
-        //restore values
-        moneyTV.setText(savedInstanceState.get("text2"));
-
-        bet_et.setText(savedInstanceState.getString("text1"));
-    }*/
 
     public void calc_total(TextView location,int points){
         String total = location.getText().toString().trim();
